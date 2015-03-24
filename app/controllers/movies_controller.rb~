@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
 	sorting_order = params[:sort_by]
 	@Rfilter = params[:ratings]
 	if @Rfilter.blank? == false
-		@movies = Movie.find_all_by_rating(@Rfilter.[keys])
+		@movies = Movie.find_all_by_rating(@Rfilter.keys)
 	else
     		@movies = Movie.all({:order=>sorting_order})
 	end
