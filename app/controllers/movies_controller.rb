@@ -4,8 +4,12 @@ class MoviesController < ApplicationController
   def index
 	@all_ratings = Movie.ratings
 	sorting_order = params[:sort_by]
-    @movies = Movie.all({:order=>sorting_order})
-	
+	@Rfilter = params[:ratings]
+	if @Rfilter.blank? == false
+		@movies = Movie.find_all_by_rating(@Rfilter.keys)
+	else
+    		@movies = Movie.all({:order=>sorting_order})
+	end
   end
 
   def show
