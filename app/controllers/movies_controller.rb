@@ -2,6 +2,7 @@
 class MoviesController < ApplicationController
 
   def index
+	@all_ratings = Movie.ratings
 	sorting_order = params[:sort_by]
     @movies = Movie.all({:order=>sorting_order})
 	
@@ -22,6 +23,8 @@ class MoviesController < ApplicationController
     flash[:notice] = "#{@movie.title} was successfully created."
     redirect_to movies_path
   end
+  
+
 
   def edit
     @movie = Movie.find params[:id]
